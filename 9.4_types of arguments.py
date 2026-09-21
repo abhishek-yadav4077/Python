@@ -1,0 +1,31 @@
+"""
+def add(a, b):
+    return a + b
+
+#Positional arguments - passing arguments in order of their position
+result = add(10, 5)
+print(result)
+
+
+#Default arguments - we can assign default values to one or more arguments and due to which we have optional argument i.e. when we don't pass any argument then default argument will be taken and when we pass then the passed one will overwrite the default one
+def add(a, b=10):
+    return a + b
+result = add(10)
+print(result)
+
+
+
+# def add(a, b=10, c): #error -> a non-default argument/parameter should not follow by default arguments/parameter
+def add(a, c, b=10):
+    return a + b + c
+result = add(10, 20)
+print(result)
+
+
+#Keyword arguments - way of passing the value to arguments when calling the functions
+def add(a, b=10, c=10):
+    return a + b + c
+result = add(a=10, c=50, b=9) #order does not matter
+print(result)
+"""
+

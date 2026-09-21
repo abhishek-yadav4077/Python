@@ -1,0 +1,156 @@
+**NOTE**
+1. PLEASE REFER TUTEDUDE'S NOTES,
+2. AND PYTHON OFFICIAL DOCUMENTATIONS.
+
+
+
+What is data ?
+- collection of information
+- derives from the word datum-> single piece of information
+- e.g. data of a person -> Name, Age, DOB, Gender, Nationality etc.
+- forms of data: text, numbers, media etc.
+- earlier, it was written and stored
+- nowadays, datas can be stored inside laptop, phone, pc digitally in form of bytes
+
+
+
+
+What is database ?
+- data = collection of information
+- base 
+  - in construction of house, initially the basement is laid in an organized manner
+- data + base = database
+  - organized
+      - tables by means of rows and columns
+      - can be easily accessed, managed and updated
+
+Main purpose ?
+- to operate a large amout of information by storing, retrieving and managing them
+
+- Many databases are available like
+  - MySQL
+  - ORACLE
+  - PostgreSQL (in this course)
+  - MongoDB, etc.
+
+
+
+
+Types of databases ?
+1. Hierarchical databases
+2. NoSQL databases
+3. Object Oriented databases (deals with PostgreSQL)
+4. Relational databases (deals with PostgreSQL)
+5. Network databases
+
+Relational databases
+- categorized by a set of tables
+- SQL (Structure Query Language) act as application interface
+- easier to modify
+- extending the database
+- joining the database
+
+
+
+
+PostgreSQL
+- Object-relational database
+    - Object Oriented database + Relational database
+- similar to relational database
+- Object oriented database -> objects, classes & inheritence are supported
+
+- open source
+- source code is available under PostgreSQL license
+- building of commercial apps
+
+
+	
+
+SQL Shell (psql) commands        --SQL is NOT case sensitive
+1. \l 
+      - to know/see the databases available inside psql shell
+
+
+2. create database <name>; 
+      - create a new database
+
+      e.g. create database demodb
+
+
+3. \c <database name>
+      - to switch database , first create then switch 
+
+
+4. drop database <name>;
+      - to delete database 
+
+
+5. CREATE TABLE <name>(<details1> <datatype>, <details2> <datatype>, <details3> <datatype>);
+      - to create a table
+
+      e.g. CREATE TABLE students(name text, number int, age int);
+
+
+6. \d
+      - to see the lists of relations
+
+
+7. INSERT INTO <table name>(<details1>,<details2> ,<details3>) VALUES(<value1>, <value2>, <value3>);
+      - to add values inside the table
+      - you can change the position of details accordingly 
+
+      e.g. INSERT INTO students(name, number, age) VALUES('Sam', 12, 20)
+             INSERT INTO students(name, number, age) VALUES('Sam', 12, 20)
+
+
+8. (i) SELECT * FROM <database name>;
+         - to retrieve all the datas from the database/table
+
+         e.g. SELECT name FROM <database name>;
+               - this will give only name data, not all
+
+
+(ii). SELECT * FROM <database name> WHERE <detail>=<value>;
+        - to filter the data
+
+        e.g. SELECT * FROM students WHERE number=12;        
+
+
+(iii).  SELECT <detail> FROM <database name> WHERE <detail>=<value>;  
+        - to filter data
+
+        e.g.  SELECT number FROM students WHERE age=20;
+
+
+9. TRUNCATE TABLE <table name>;
+     - to delete contents of the table
+
+      e.g. TRUNCATE TABLE students;
+____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+
+
+
+cd ----- go inside
+cd.. ---- go outside the folder
+
+virtualenv env
+
+cd <your folder>  ----- cd env ----- cd scripts ------ activate/ dectivate 
+
+psycopg2 package - helps the Python and Postgres database to communicate
+                                - since we install through the environment so we have to run by activating the environment through command prompt
+____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________
+
+
+
+
+How to create table using Python ?
+- you use same commands of SQL Shell (psql)
+- you have to run the python file in VS code and then check in psql shell
+
+
+
+
+
+

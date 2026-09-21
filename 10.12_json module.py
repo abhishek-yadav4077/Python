@@ -1,0 +1,62 @@
+"""
+json module
+    - provides us a utility that we need to effectively handled the json data.
+
+json data
+    - json means javascript object notations is a widely used and accepted text based format for data exchange.
+
+- syntax of json resembles python dictionaries, but it has certain differences with it.
+    for example, only double quotations can be used for string in json file, only lower cases can be used for boolean datatypes
+
+- json modules and python helps us to work with json data
+
+- json in python is handled by the library called json, and we can easily work with json files (having extension .json)
+  and we can easily exchange data
+
+- json is very human-readable format
+
+- used in api and data storage
+- name suggests javascript, but used and accepted by other programming languages like python also
+
+
+"""
+import json
+
+students = {'student1': {'roll':101, 'name':'John', 'percent':95.5, 'sports': False},
+           'student2': {'roll':102, 'name':'Carol', 'percent':92.5, 'sports': False},
+           'student3': {'roll':103, 'name':'Alice', 'percent':85.5, 'sports': True}}
+
+print(students)
+print(type(students))
+
+#dump() - write the dictionary into a json file   -----> serialization
+'''
+with open("student_data_10.12_2.json", "wt") as fh:
+    json.dump(students, fh, indent=4)
+
+
+#load() - to read a json file, it loads the json data into dictionary ------> deserialization
+
+with open("student_data_10.12_2.json", "rt") as fh:
+    data = json.load(fh)
+
+print(data)
+print(type(data))
+'''
+#update() - updates an existing data, add new data to be updated
+
+try:
+    #read the old data from the json file ----> using load
+    with open("student_data_10.12_2.json", "r") as fh:
+        data = json.load(fh)
+except FileNotFoundError:
+    with open("student_data_10.12_2.json", "w") as fh:
+        json.dump(students, fh, indent=4)
+else:
+    #update it
+    data.update(students)      #do manual change in students dictionary so this function will update it
+    #dump ----> write the updated data in the json file
+    with open("student_data_10.12_2.json", "w") as fh:
+        json.dump(data, fh, indent=4)   #we will not use students, we use data since we updated it
+
+

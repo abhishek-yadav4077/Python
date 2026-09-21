@@ -1,0 +1,9 @@
+**NOTE**
+1. PLEASE REFER TUTEDUDE'S NOTES,
+2. AND PYTHON OFFICIAL DOCUMENTATIONS.
+
+
+
+Django Template Language (DTL) 
+- to create dynamic web pages
+- 

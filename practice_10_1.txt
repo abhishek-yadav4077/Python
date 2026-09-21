@@ -1,0 +1,3 @@
+This is a text file.
+We are learning File handling in Python.
+Modes to open a file are: r, w, a, x, t, b

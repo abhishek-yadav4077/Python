@@ -1,0 +1,10 @@
+"""
+nested loop
+    - one loop inside another loop
+    - for inside for, while inside for, while inside while, for inside while
+"""
+
+for i in range(3): #outer loop
+    for j in range(2): #inner loop
+        print(f"i={i}, j={j}")
+        

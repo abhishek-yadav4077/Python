@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_file %}
+    <link rel="stylesheet" href="{% static 'blogs/app.css' %}">
+{% endblock %}
+
+<!--
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>All Posts</title>
+</head>
+<body>
+    <ul>
+        {% for blog in blogs %}
+           # <li><a href="/allposts/{{ blog }}">{{ blog|capfirst }}</a></li>
+
+        <li><a href="{% url 'blog-post' blog=blog %}">{{ blog|capfirst }}</a></li>
+                              # <a href="{% url 'blog-post' blog=blog %}">{{ blog|capfirst }}</a>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+-->
+
+{% block page_title %}
+All Posts
+{% endblock %}
+
+{% block body_content %}
+    <section>
+        <h2>All My Posts</h2>
+        <ul>
+            {% for blog in blogs %}
+
+            <li>
+                <article>
+
+
+                    <a href="{% url 'blog-post' blog=blog.slug %}">{{ blog.title }}</a>
+                    <img src="{% static 'blogs/images/python.jpg' %}" alt="Python" width="300" />
+                    <div>
+                        <p>Python is a high level programming language.</p>
+                    </div>
+                </article>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}

@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+<!--
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Our blog post home page</title>
+</head>
+<body>
+    <h1>
+        Welcome to my Personal Blog Post
+    </h1>
+
+    <h2>
+        I write about Python and related stuffs
+    </h2>
+</body>
+</html>
+-->
+
+
+
+{% block css_file %}
+    <link rel="stylesheet" href="{% static 'blogs/app.css' %}">
+{% endblock %}
+
+{% block page_title %}
+    Our blog post home page
+{% endblock %}
+
+{% block body_content %}
+<!--
+    <section>
+        <header>
+            <h1>Welcome to my Personal Blog Post</h1>
+            <h2>I write about Python and related stuffs</h2>
+            <img src="{% static 'blogs/images/1.jpg' %}" alt="Author" width="300" />
+        </header>
+    </section>
+
+    <section>
+        <h2>Featured Posts</h2>
+        <ul>
+            <li>
+                <article>
+                    <a href="">
+                        <img src="{% static 'blogs/images/python.jpg' %}" alt="Python" width="300" />
+                        <div>
+                            <h3>Python Intro</h3>
+                            <p>Python is a high level programming language.</p>
+                        </div>
+                    </a>
+                </article>
+            </li>
+            <li>
+                <article>
+                    <a href="">
+                        <img src="{% static 'blogs/images/django.jpg' %}" alt="Django" width="300" />
+                        <div>
+                            <h3>Django Basics</h3>
+                            <p>Django is a web framework in Python.</p>
+                        </div>
+                    </a>
+                </article>
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>About the Author</h2>
+        <p>The Author has 10+ years of experience in software and application development.
+        He also makes content on Python & Django.
+        </p>
+        <p>Contact the author on contact@example.com</p>
+
+    </section>
+-->
+
+<!--
+    <section>
+        <header>
+            <h1>Welcome to my Personal Blog Post</h1>
+            <h2>I write about Python and related stuffs</h2>
+            <img src="{% static 'blogs/images/1.jpg' %}" alt="Author" width="300" />
+        </header>
+    </section>
+
+    <section>
+        <h2>Featured Posts</h2>
+        <ul>
+            {% for blog in l_blogs %}
+                <li>
+                    <article>
+                        <a href="{% url 'blog-post' blog=blog.slug %}">{{ blog.title }}</a>
+                        <img src="{% static 'blogs/images/'|add:blog.image %}" alt="{{ blog.title }}" width="300" />
+                        <div>
+                            <p>{{ blog.preview }}</p>
+                        </div>
+                    </article>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>About the Author</h2>
+        <p>The Author has 10+ years of experience in software and application development.
+        He also makes content on Python & Django.
+        </p>
+        <p>Contact the author on contact@example.com</p>
+
+    </section>
+
+-->
+
+    <section>
+        <header>
+            <h1>Welcome to my Personal Blog Post</h1>
+            <h2>I write about Python and related stuffs</h2>
+            <img src="{% static 'blogs/images/1.jpg' %}" alt="Author" width="300" />
+        </header>
+    </section>
+
+    <section>
+        <h2>Featured Posts</h2>
+        <ul>
+            {% for blog in l_blogs %}
+                {% include 'blogs/includes/posts.html' %}
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>About the Author</h2>
+        <p>The Author has 10+ years of experience in software and application development.
+        He also makes content on Python & Django.
+        </p>
+        <p>Contact the author on contact@example.com</p>
+
+    </section>
+
+{% endblock %}
+

@@ -1,0 +1,39 @@
+"""
+When all the length of the sides of the triangle is known - a, b, c
+Semi perimeter (s) = (a + b + c) / 2
+Area = square root of(s * (s - a) * (s - b) * (s - c)
+- ctrl + d -> copy paste line
+"""
+a = float(input("Enter first side: "))
+b = float(input("Enter second side: "))
+c = float(input("Enter third side: "))
+s = (a + b + c) / 2
+area = (s * (s - a) * (s - b) * (s - c)) ** 0.5
+print("Area of triangle with given sides is: ", round(area, 2))
+
+
+"""
+Simple interest = (P * R * T) / 100
+P = Principal amount
+R = Rate of interest
+T = Time duration
+"""
+principal = float(input("Enter principal amount: "))
+rate = float(input("Enter rate of interest: "))
+time = float(input("Enter time duration: "))
+si = (principal * rate * time) / 100
+print("Simple interest is: ", si)
+
+
+"""
+Amount = P(1 + R/100) ** T
+Compound Interest = Amount - P
+"""
+principal = float(input("Enter principal amount: "))
+rate = float(input("Enter rate of interest: "))
+time = float(input("Enter time duration: "))
+#Amount1 = principal * (1 + rate/100) ** time
+Amount2 = principal * pow((1 + rate/100), time)
+ci = Amount2 - principal
+print("Amount is: ", round(Amount2, 2))
+print("Compound interest is: ", round(ci, 2))

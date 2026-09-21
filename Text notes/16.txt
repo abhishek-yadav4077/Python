@@ -1,0 +1,503 @@
+**NOTE**
+1. PLEASE REFER TUTEDUDE'S NOTES,
+2. AND PYTHON OFFICIAL DOCUMENTATIONS.
+
+
+
+Whta is data anaysis ?
+step 1: collection of data
+
+step 2: processing of data
+              - comparison of data 
+              - inspecting of data
+
+step 3: cleaning of data
+
+step 4: summarization of data
+
+e.g. Android vs Apple
+- Anaconda is more flexible for data analysis, data visualization and data normalization than pycharm
+  - Jupyter nootbook - more user friendly than pycharm
+                                    - more flexible for data analysis, data visualization and data normalization
+
+
+
+
+Libraries
+- python packages for data science, data analysis
+
+1. Scientific computing libraries
+    (i) pandas
+        - known as 2-D arrays
+        - used for the purpose of data frame, data structures and tools
+        - helps us to read the data that we want to get it
+    (ii) numpy
+        - used for the purpose of array and matrices
+     (ii) sci-py
+        - preferred only for integral and differential equations
+        - used for solving and optimization
+
+2. Visualization libraries
+    (i) matplotlib
+        - used for plotting the graph
+    (ii) seaborn
+        - used to plot graph, heat maps, time series, violent plots
+
+3. Algorithmic libraries
+    (i) scikit learn
+       - preferred for machine learning concepts like regression, classification, clustering
+    (ii) stats models
+       - used to explore the data,  estimate the statisal model and perform statistical test
+
+Important properties
+- importing a data - process of loading and reading the data into python
+- whenever importing a data, keep in mind 2 important properties -
+
+1. File format
+(.csv, .json, .hdf, .xlsx, ...)
+
+2. File path
+(C:/Desktop/My Files/mydata.csv)
+
+
+
+
+Importing csv files and read
+
+import pandas as pd
+path = "C:/Users/Tarkeshwar/Desktop/ABHISHEK/Technical skills/TuteDude/Python_tutedude/Data analysis/llm_labels_full.csv" #reverse the slash 
+df = pd.read_csv(path)
+print(df)
+
+
+
+
+Methods to view files
+
+df.head(5)   #head- helps the viewer to view first 5 rows of the csv file 
+df.tail(5)     #tail - to view last 5 rows of our file
+
+df.to_csv(path)   # to save the file
+
+df.dtypes   # to know data types present in the file
+
+df.describe()                                  # to return a statistical summary
+df.describe(include="all")           # it provides full summary statistic
+
+	count -> no. of contents present on each column
+	unique -> no. of distinct object in the column                        NaN - Not a Number
+	top -> most frequently occuring object
+	freq -> no. of times the top object appears in the column
+	mean
+	std
+	min
+	25%
+	60%
+	75%
+	max
+
+df.info()      # it provides a concise summary of dataset
+
+df.columns    # display the column names
+
+
+
+
+How to import excel file
+- Prepoccessing of data -> converting raw data into a summarize form of a data
+- to convert a raw data, we have to clean our data (Data Cleaning/ Data Wrangling)
+
+
+headers = ["S.No", "Even", "Odd", "Multiples 5", "Multiples 3", "Multiples 4"]   #to modify the headers
+df.columns = headers    #changes assigned to each column of file
+
+
+df["Odd"] = df["Odd"] + 1    #adds 1 to each rows of same column
+
+
+- if you make changes in excel file manually, then you have to run the code right from the starting of importing as it becomes a cycle
+
+
+df.drop([<lable>], axis=0)   #to remove row (axis=0 means row) 
+	0
+	1
+	2
+	...
+	10                           knowns as label
+df.drop([<lable>], axis=1)   # to remove column (axis=1 means column)
+
+
+df.dropna()                                                      # wherever NaN present, it will remove the entire row
+df.dropna(subset = ["Even"], axis=0)              
+
+
+
+
+To replace NaN with a value?
+
+import numpy as np
+df["Even"].replace(np.nan, 22)
+
+
+
+
+What is Data Formatting ?
+- applying calculations to columns, renaming of column names and checking the data types of your data, even dta converting
+
+
+df["Multiples 4"] = df["Multiples 4"] / 2                 #ach row of a specific columns get divided by 2
+
+df.rename(columns = {"Multiples 4" : "Multiples 2"})       # to rename the column
+df.rename(columns = {"Multiples 4" : "Multiples 2"}, inplace = True)       #permanent change
+
+df.dtypes     #to identify the datatypes
+
+df["Multiples 2"] = df["Multiples 2"].astype("int")       #it will convert data type
+
+
+
+
+What is Data Normalization ?
+
+- Not normalised (does exceeds 1,   no range)
+	Age	Salary
+	30	4,00,000
+	40	60,000
+	50	3,00,000
+
+- Normalised (doesn't exceeds 1)
+	Age	Salary
+	0.3	1
+	0.4	0.15
+	0.5	0.75
+
+Methods of data normalization
+1. Simple feature scaling
+      - Mathematically, 
+             
+              x (new) = x (old) / x (max )
+
+      - Result range: 0 to 1
+
+
+2. Min-Max
+      - Mathematically, 
+             
+              x (new) = x (old) - x (min)  / x (max ) - x (min)
+
+      - Result range: 0 to 1
+
+
+3. Z-score/ standard score
+      - Mathematically, 
+             
+              x (new) = x (old) - u (mew)  / o (sigma)
+
+      - u : Average of feature        o : Standard deviation
+      - Result range: -3 to +3
+
+
+
+
+e.g. df["Length"] = df["Length"] / df["Length"].max()       #simple feature scaaling method
+
+       df["Length"] = (df["Length"] - df["Length"].min()) / (df["Length"].max() - df["Length"].min())       #min-max method
+
+       df["Length"] = (df["Length"] - df["Length"].mean()) / df["Length"].std()     #z - score method
+
+
+
+
+Binning
+- a data preprocessing technique used to group continuous numerical values into smaller, discrete intervals or "bins"
+- also it converts numerical datas into the categorical data
+
+e.g. point 1
+	S.No	Price			S.No	Price	Price binned
+	1	1000			1	1000	High
+	2	600			2	600	Medium
+	3	500			3	500	Medium
+	4	100			4	100	Low
+
+e.g. point 2 (one hot encoding)
+	S.No	Fuel			S.No	Fuel	Gasoline	Diesel
+	1	Gasoline			1	Gasoline	1	0
+	2	Diesel			2	Diesel	0	1
+	3	Diesel			3	Diesel	0	1
+	4	Gasoline			4	Gasoline	1	0
+     
+
+
+
+Numerical to Categorical conversion
+- whenever to do binning - always import numpy as np
+
+import numpy as np
+
+bins = np.linspace(min(df["Length"]), max(df["Length"]), 4)   #linspace is used to determined the evenly spaced sequence in a specified interval, to group values this linspace is very important .... linspace(start, stop, no. of samples)
+
+group_name = ["Low", "Medium", "High"]         #so the numeric data gets converted to low, medium, high
+
+df["Length-binned"] = pd.cut(df["Length"], bins, labels = group_name, include_lowest = True)     #cut( ) function to sort the data          #ensures whether first interval is inclusive or not ?
+
+
+Categorical to Numeric conversion
+
+pd.get_dummies(df["Length"])            # converted to binary format     
+
+
+
+
+How to count occurrence of values of specific column ?
+
+index = pd.Index(df["Length"])
+
+index.value_counts()
+
+
+
+
+How to plot a graph ?
+1. Boxplot
+
+import seaborn as sns
+sns.boxplot(x = "Length", y = "E", data = df)
+
+
+2. Scatterplot
+
+import matplotlib.pyplot as plt
+
+x = df["Length"]
+y = df["E"]
+
+plt.scatter(x, y)
+plt.title("Scatterplot along the x and y axix")
+
+plt.xlabel("Length")
+plt.ylabel("Width")
+
+
+
+
+How to group things in python ?
+
+import numpy as np
+grp = df.groupby("A")
+grp.aggregate(np.sum)
+
+
+import numpy as np
+grp = df.groupby(["A", "B", "C", "D", "E", "Length"])
+grp.aggregate(np.sum)
+
+grp = df.groupby(["A", "B"], as_index = False)       #it will adjust spaces
+
+grp.size()
+
+grp.count()
+
+
+
+
+
+
+
+l = [['apple',1], ['apple',2], ['apple',2], ['ball', 1], ['ball',1]]
+df_10 = pd.DataFrame(l, columns = ["A", "B"])
+print(df_10)                                                                                                                 # to create new data frame
+df_10.groupby("A")["B"].nunique()
+
+
+
+
+df_20 = pd.DataFrame({'S.No' : [1, 2, 3, 4, 5], 'A' : ['apple', 'ant', 'ankle', 'air', 'arc'], 'B' : ['ball', 'bat', 'bear', 'ballon', 'boy'], 'C' : ['cat', 'cake', 'car', 'cow', 'coat'], 'D' : ['dog', 'duck', 'doll', 'dear', 'drum']})
+print(df_20)                                                                             # created a new Data Frame
+
+df_20.pivot(index = 'A', columns = 'B', values = 'C')     #checks for intersection
+df_20.pivot(index = "S.No", columns = 'A')['B']              # ANOTHER WAY
+df_20.pivot(index = 'S.No', columns = 'A', values = ['B', 'C'])          #another way of multiples intersection
+
+
+
+
+How to plot a heat map ?
+
+import numpy as np
+np.random.seed(0)                     -> this line means everytime to run, your data won't change else it will change
+import seaborn as sns
+uniform_data = np.random.rand(5,6)
+print(uniform_data)                                                                    #uniform random data creation
+
+
+heat_map = sns.heatmap(uniform_data)                   #creates heatmap
+heat_map_2 = sns.heatmap(uniform_data, vmin = 0, vmax = 1)                     # vmin = 0 means the minimum data display on above map will be 0 and vmax = 1 means 1
+
+normal_data = np.random.randn(6,6)                                                                      #create normal data
+print(normal_data)
+heat_map = sns.heatmap(normal_data, center = 0)                                               # o is at center, above positive, below negative
+
+
+
+  
+How to load a data set into a heat map ?
+
+flights = sns.load_dataset()                                     
+
+
+flights = sns.load_dataset("flights")                                                                                                                              #this load the data_set that we wise to use
+flights = flights.pivot(index = "month", columns = "year", values = "passengers")
+heat_map_4 = sns.heatmap(flights)
+
+
+heat_map_5 = sns.heatmap(flights, annot = True, fmt = "d)                                      helps us to bring it the numbers inside the heat map,...... fmt means format and d means integers format................. .1f means float format 
+
+heat_map_6 = sns.heatmap(flights, cmap = 'YlGnBu')               # cmap means color mapping for color schemes for yellow, green and blue
+
+
+
+
+ANOVA - refer slide
+- Analysis of Variance
+- statistical comparison of groups   -> finding the correlation between the groups
+
+- to analyse we have 2 main parameters
+1. F - Test Score
+	- ratio of variation between the groups mean over the variation within the same groups
+2. p - value
+	- checks for the significance
+
+
+
+
+Correlation
+- measures to what extent different variables are interdependent
+e.g. lung cancer -> smoking
+
+1. Pearson correlation
+	Two parameters
+	- correlation co-efficient
+		- it determines the strength of relationship between the variables
+		- Range: -1 to +1
+		- Close to +1: large positive relationship
+		- Close to -1: large negative relationship
+		- Close to 0: No relationship
+  
+	- p - value
+		- it determines the strength and also checks for the significance 
+		S. No	Value	Result
+		1	<0.001	Strong
+		2	<0.05	Moderate
+		3	<0.1	Weak
+		4	>0.1	No certainty
+
+	
+	Strong correlation -> correlation co-efficient = +1 & -1. p - value: <0.001
+
+
+
+
+#pearson correlation
+pearson_correlation = stats.pearsonr(flights['year'], flights['passengers'])
+print(pearson_correlation)
+
+output -> PearsonRResult(statistic=0.9218238352924201, pvalue=2.58104255191102e-60)   #first value is correlation co-efficient and second value is p-value....... this is a strong correlation
+
+
+
+
+Linear Regression
+- Modelling the relationship from the data
+
+- two types
+	1. Simple Linear Regression
+	2. Multiple Linear Regression
+
+Simple Linear Regression
+-  Independent variable (x1)       -----formulates-----> Linear regression ---------> prediction
+
+predictor (independent) variable = x
+target (dependent) variable = y
+
+y = b0 + b1x          where b0 = intercept, b1 = slope
+
+e.g.           
+	0                          matrix
+x = 	20
+	40
+
+	3000
+y = 	1400		matrix
+	_______
+
+we have to predict y value?
+
+y = b0 + b1x
+y = 3000 - 80(20) = 1400
+
+
+
+
+Multiple Linear Regression
+- Multiple interdependent variables (x1, ......, xn)         ---------> Linear regression --------> Prediction
+
+predictor (independent) variable = x1, x2, x3, ......
+target (dependent) variable = y
+
+y = b0 + b1x1 + b2x2 + b3x3          
+where
+b0 = intercept
+b1 = parameter/co-efficient of x1
+b2 = parameter/co-efficient of x2
+b3 = parameter/co-efficient of x3
+
+e.g. 
+y = b0 + b1x1 + b2x2 + b3x3
+y = 1 + 2x1 + 3x2
+
+
+solution:   
+	n	x1	x2	y
+	1	0	0	1
+	2	0	2	7
+	3	1	0	3
+	4	3	2	13
+
+
+
+
+Regression plot
+- it states the relationship between the two variables
+- it also determines the strength of the correlation and expose the direction of the relationship
+
+- similar to that of scattered plot
+
+- vertical axis = dependent, horizontal axis = independent
+
+
+Residual plot
+- residual value -> measures how much the regression line vertically misses the data points
+- residual plot - used to find the problems with regression, represents the error between the actual values
+
+
+Distribution plot
+- it will display a range of numeric values which are plotted against the dimensions
+
+
+Polynomial regression 
+- it is the special case of the general linear regression model
+- they are useful for describing the curvilinear relationship 
+
+Curvilinear relationships - -- - slides h.w.
+
+
+
+Measures for In-Sample evaluation
+- we have two parameters
+	1. MSE (Mean Square Error)
+		- average between the estimated value and the actual value
+	2. R - squared (R2)
+		- it determines how closed the data is fitted
+
+
+
